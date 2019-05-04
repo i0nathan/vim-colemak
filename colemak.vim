@@ -1,8 +1,8 @@
 " Redesigned mapping for the Colemak layout for Vim 7.0
 " 2008-04-21 Shai Coleman, http://colemak.com/ . Public domain. 
 "
-" * Use ":source colemak.vim" (without quotes) to load this file. Adjust path to colemak.vim if needed.
-" * Add the line: "source colemak.vim" (without quotes) in your .vimrc file to automatically load this file. 
+" * Use \":source colemak.vim" (without quotes) to load this file. Adjust path to colemak.vim if needed.
+" * Add the line: \"source colemak.vim" (without quotes) in your .vimrc file to automatically load this file. 
 "   It is recommended to load colemak.vim after all other Vim scripts.
 
 " recommended commands for running under Linux console
@@ -331,12 +331,12 @@ xnoremap <silent> <S-Space> :<C-u>let b:tmp_var=&sw\|set sw=1\|normal! gv<<CR>:<
 
 " The Tab key is mapped to Escape. Press Shift-Tab to insert a Tab.
 " To minimize Tab use, you can use '<', '>' and ':set autoindent'
-nnoremap <silent> <Tab> <Esc>:nohlsearch<bar>pclose<CR>|
-vnoremap <Tab> <Esc><Nul>| " <Nul> added to fix select mode problem
-inoremap <Tab> <Esc>|
-nnoremap <S-Tab> i<Tab><Esc><Right>
-vnoremap <S-Tab> >gv|
-inoremap <S-Tab> <Tab>|
+"nnoremap <silent> <Tab> <Esc>:nohlsearch<bar>pclose<CR>|
+"vnoremap <Tab> <Esc><Nul>| " <Nul> added to fix select mode problem
+"inoremap <Tab> <Esc>|
+"nnoremap <S-Tab> i<Tab><Esc><Right>
+"vnoremap <S-Tab> >gv|
+"inoremap <S-Tab> <Tab>|
 
 " Enter, open line
 nnoremap <CR> i<CR><Esc>|
