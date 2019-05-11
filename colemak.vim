@@ -54,13 +54,13 @@ set showcmd		" display incomplete commands
 syntax on		" enable syntax highlighting
 
 " recommended settings, but not enabled by default
-"if has("gui_running") | source $VIMRUNTIME/mswin.vim | endif
+if has("gui_running") | source $VIMRUNTIME/mswin.vim | endif
 
 " other optional settings
-"set hlsearch		" highlight search patterns
-"set ignorecase		" ignore case
-"set smartcase		" ignore case when the pattern contains lowercase letters only
-"set showtabline=2	" always show tab page labels
+set hlsearch		" highlight search patterns
+set ignorecase		" ignore case
+set smartcase		" ignore case when the pattern contains lowercase letters only
+set showtabline=2	" always show tab page labels
 "set number		" display line numbers
 
 " Make Alt pop up the menu for all keys, mappings in use will be overridden subsequentially
@@ -162,6 +162,7 @@ nnoremap c y|xnoremap c y|
 nnoremap v gP|xnoremap v gP|
 nnoremap X dd|xnoremap X d|
 nnoremap C yy|xnoremap C y|
+nnoremap cc yy|xnoremap cc y|
 nnoremap V p|xnoremap V p|
 nnoremap <C-c> "+Y| " <C-c> with no selection copies current line to clipboard
 nnoremap <C-x> "+dd| " <C-x> with no selection cuts current line to clipboard
@@ -289,8 +290,8 @@ endfunction
 nnoremap <C-o> :<C-u>browse tabnew<CR>|vnoremap <C-o> :<C-u>browse tabnew<CR>|
 
 " (GUI) Tabs
-noremap <silent> <C-S-Tab> :<C-u>tabprev<CR>|
-noremap <silent> <C-Tab> :<C-u>tabnext<CR>|
+" noremap <silent> <C-S-Tab> :<C-u>tabprev<CR>|
+" noremap <silent> <C-Tab> :<C-u>tabnext<CR>|
 
 " Restore mappings
 " Free mappings: ,/+/H/~
@@ -318,31 +319,35 @@ nnoremap gh K|xnoremap gh K|
 
 " Window handling: <C-w> is now <C-r>
 nnoremap <C-r> <C-w>|xnoremap <C-r> <C-w>|
-" <C-r><C-r> opens a new window
-nnoremap <C-r><C-r> <C-w>n|xnoremap <C-r><C-r> <C-w>n|
+" <C-r><C-r> opens a new window in vertical split
+" nnoremap <C-r><C-r> <C-w>n|xnoremap <C-r><C-r> <C-w>n|
+nnoremap <C-r><C-r> :vsplit<CR>|xnoremap <C-r><C-r> :vsplit<CR>|
 nnoremap <C-r>n <C-w>h|xnoremap <C-r>n <C-w>h| 
 nnoremap <C-r>u <C-w>k|xnoremap <C-r>u <C-w>k| 
 nnoremap <C-r>e <C-w>j|xnoremap <C-r>e <C-w>j| 
 nnoremap <C-r>i <C-w>l|xnoremap <C-r>i <C-w>l| 
 
+" Insert space in normal mode
 nnoremap <Space> i<Space><Esc><Right>|
 xnoremap <silent> <Space> :<C-u>let b:tmp_var=&sw\|set sw=1\|normal! gv><CR>:<C-u>let &sw=b:tmp_var\|normal! gv<CR>
 xnoremap <silent> <S-Space> :<C-u>let b:tmp_var=&sw\|set sw=1\|normal! gv<<CR>:<C-u>let &sw=b:tmp_var\|normal! gv<CR>
 
 " The Tab key is mapped to Escape. Press Shift-Tab to insert a Tab.
 " To minimize Tab use, you can use '<', '>' and ':set autoindent'
-"nnoremap <silent> <Tab> <Esc>:nohlsearch<bar>pclose<CR>|
-"vnoremap <Tab> <Esc><Nul>| " <Nul> added to fix select mode problem
-"inoremap <Tab> <Esc>|
-"nnoremap <S-Tab> i<Tab><Esc><Right>
-"vnoremap <S-Tab> >gv|
-"inoremap <S-Tab> <Tab>|
+set autoindent
+nnoremap <silent> <Tab> <Esc>:nohlsearch<bar>pclose<CR>|
+vnoremap <Tab> <Esc><Nul>| " <Nul> added to fix select mode problem
+inoremap <Tab> <Esc>|
+nnoremap <S-Tab> i<Tab><Esc><Right>
+vnoremap <S-Tab> >gv|
+inoremap <S-Tab> <Tab>|
 
 " Enter, open line
-nnoremap <CR> i<CR><Esc>|
 inoremap <S-CR> <CR>|
 nnoremap <S-CR> O<Esc>|
-nnoremap <C-CR> o<Esc>|inoremap <C-CR> <C-o>o|
+nnoremap <C-CR> o<Esc>|
+inoremap <C-CR> <C-o>o|
+nnoremap <CR> i<CR><Esc>|
 
 " Delete/Backspace
 nnoremap <C-d> "_dw|vnoremap <C-d> "_d|inoremap <C-d> <Delete>|cnoremap <C-d> <Delete>|
@@ -363,6 +368,6 @@ inoremap <expr> <C-Space> (&omnifunc == '' <bar><bar> pumvisible() ? "\<C-n>" : 
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 "Tip #1386, Make Vim completion popup menu work just like in an IDE
-"set completeopt=longest,menuone
-"inoremap <expr> <C-n> pumvisible() ? "\<lt>C-n>" : "\<lt>C-n>\<lt>C-r>=pumvisible() ? \"\\<lt>Down>\" : \"\"\<lt>CR>"
-"inoremap <expr> <M-;> pumvisible() ? "\<lt>C-n>" : "\<lt>C-x>\<lt>C-o>\<lt>C-n>\<lt>C-p>\<lt>C-r>=pumvisible() ? \"\\<lt>Down>\" : \"\"\<lt>CR>"
+set completeopt=longest,menuone
+inoremap <expr> <C-n> pumvisible() ? "\<lt>C-n>" : "\<lt>C-n>\<lt>C-r>=pumvisible() ? \"\\<lt>Down>\" : \"\"\<lt>CR>"
+inoremap <expr> <M-;> pumvisible() ? "\<lt>C-n>" : "\<lt>C-x>\<lt>C-o>\<lt>C-n>\<lt>C-p>\<lt>C-r>=pumvisible() ? \"\\<lt>Down>\" : \"\"\<lt>CR>"
