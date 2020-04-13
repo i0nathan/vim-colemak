@@ -4,12 +4,12 @@ Source Shai Colemak.vim version to work on and easily install on other systems t
 ## To use this config file:
 1. Clone this repo into home directory
 ```bash
-git clone https://www.github.com/i0nathan/vim-colemak .vim
+git clone https://www.github.com/i0nathan/vim-colemak ~/.vim
 ```
 
 2. Move .vimrc from cloned repo to home location
 ```bash
-mv .vim/.vimrc .
+mv ~/.vim/.vimrc .
 ```
 
 ## Some notes for this config file:
